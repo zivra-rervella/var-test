@@ -7,7 +7,7 @@ jobs:
   use:
     environment: test
     name: use
-    runs-on: ${{ join(fromJson(vars.TAGS), ', ') }}
+    runs-on: ["${{ join(fromJson(vars.TAGS), ', ') }}"]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
