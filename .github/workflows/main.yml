@@ -14,7 +14,7 @@ jobs:
       - name: Test
         id: Test
         run: |
-          echo "TAG=${{ fromJson(vars.TAGS)[0] }}" >> $GITHUB_OUTPUT
+          echo "TAG=${{ join(fromJson(vars.TAGS), ', ') }}" >> $GITHUB_OUTPUT
     outputs:
       TAG: ${{ steps.Test.outputs.TAG }}
   test:
