@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  prep:
+  create:
     environment: test
     name: test
     runs-on: ubuntu-latest
@@ -18,7 +18,18 @@ jobs:
     outputs:
       TAG: ${{ steps.Test.outputs.TAG }}
   test:
-    needs: prep
+    needs: create
+    environment: test
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Test
+        run: |
+          echo ${{needs.prep.outputs.TAG }}
+  use:
+    needs: create
     environment: test
     name: test
     runs-on: ['${{needs.prep.outputs.TAG }}']
