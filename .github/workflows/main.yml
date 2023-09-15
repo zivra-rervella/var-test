@@ -20,7 +20,7 @@ jobs:
     needs: prep
     environment: test
     name: test
-    runs-on: ['${{ fromJson(needs.prep.outputs.TAG) }}']
+    runs-on: ['${{needs.prep.outputs.TAG }}']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
