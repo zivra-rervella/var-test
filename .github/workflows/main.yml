@@ -4,10 +4,23 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  prep:
     environment: test
     name: test
-    runs-on: ['${{ fromJson(vars.TAGS)[0] }}']
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Test
+        run: |
+          echo "TAG=${{ fromJson(vars.TAGS)[0] }}" >> $GITHUB_OUTPUT
+    outputs:
+      TAG: ${{ steps.Test.outputs.TAG }}
+  test:
+    needs: prep
+    environment: test
+    name: test
+    runs-on: ['${{ fromJson(needs.prep.outputs.TAG) }}']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
