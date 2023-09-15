@@ -7,10 +7,10 @@ jobs:
   test:
     environment: test
     name: test
-    runs-on: ${{ fromJson(vars.TAGS)[0] }}
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Test
         run: |
-          echo ${{ fromJson(vars.TAGS) }}
+          echo ${{ fromJson(vars.TAGS)[0] }}
