@@ -12,6 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Test
+        id: Test
         run: |
           echo "TAG=${{ fromJson(vars.TAGS)[0] }}" >> $GITHUB_OUTPUT
     outputs:
