@@ -7,7 +7,7 @@ jobs:
   test:
     environment: test
     name: test
-    runs-on: ${{ fromJson(vars.TAGS) }}
+    runs-on: ${{ fromJson(vars.TAGS)[0] }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
