@@ -22,7 +22,7 @@ jobs:
     needs: create
     environment: test
     name: use
-    runs-on: ['${{needs.create.outputs.TAG }}']
+    runs-on: ['${{ fromJson(needs.create.outputs.TAG) }}']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
