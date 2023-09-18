@@ -11,17 +11,20 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Test
-        id: Test
+      - name: Create Tag
+        id: Create
         run: |
           echo "TAG=${{ fromJson(vars.TAGS) }}" >> $GITHUB_OUTPUT
+      - name: Set outputs
+        run: |
+          echo ${{ steps.Create.outputs.TAG }}
     outputs:
-      TAG: ${{ steps.Test.outputs.TAG }}
+      TAG: ${{ steps.Create.outputs.TAG }}
 
   use:
     needs: create
     environment: test
-    name: use
+    name: Use Var
     runs-on: ['${{ fromJson(needs.create.outputs.TAG) }}']
     steps:
       - name: Checkout
