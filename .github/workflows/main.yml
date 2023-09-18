@@ -14,7 +14,7 @@ jobs:
       - name: Create Tag
         id: Create
         run: |
-          echo "TAG=${{ fromJson(vars.TAGS) }}" >> $GITHUB_OUTPUT
+          echo "TAG=${{ vars.TAGS }}" >> $GITHUB_OUTPUT
       - name: Set outputs
         run: |
           echo ${{ steps.Create.outputs.TAG }}
