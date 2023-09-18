@@ -25,7 +25,7 @@ jobs:
     needs: create
     environment: test
     name: Use Var
-    runs-on: ['${{ fromJson(needs.create.outputs.TAG) }}']
+    runs-on: ${{ fromJson(needs.create.outputs.TAG) }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
